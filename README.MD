@@ -1,4 +1,4 @@
-# django 入门
+# django simple demo
 
 
 ### 环境
