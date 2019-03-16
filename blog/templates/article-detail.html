@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>文章详情</title>
     <style>
         *{
             box-sizing: border-box;
@@ -14,6 +14,15 @@
         a:hover{
             color: #0066cc;
             text-decoration: underline;
+        }
+        p{
+            color: #58585b;
+            font-size: 14px;
+            line-height: 1.6rem;
+        }
+        h1{
+            font-size: 26px;
+            font-weight: normal;
         }
         .article-container{
             position: relative;
@@ -46,17 +55,16 @@
     </style>
 </head>
 <body>
-    <div class="article-container">
-        <div class="article-header">
-            <a href="{% url 'blog:edit_page' 0 %}">写新文章</a>
-        </div>
-        <div class="article-content">
-            <ul class="article-list">
-                {% for article in articles %}
-                <li><a href="{% url 'blog:article_page' article.id %}">{{ article.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+<div class="article-container">
+    <div class="article-header">
+        <h1>{{ article.title }}</h1>
     </div>
+    <div class="article-content">
+
+        <p>{{ article.content }}</p>
+
+        <p><a href="{% url 'blog:edit_page' article.id %}">编辑文章 »</a></p>
+    </div>
+</div>
 </body>
 </html>

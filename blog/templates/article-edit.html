@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章详情</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        a:link,a,a:visited{
+            color: #58585b;
+            text-decoration: none;
+        }
+        a:hover{
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        p{
+            color: #58585b;
+            font-size: 14px;
+            line-height: 1.6rem;
+        }
+        h1{
+            font-size: 26px;
+            font-weight: normal;
+        }
+        .article-container{
+            position: relative;
+            margin:30px auto;
+            width: 100%;
+            max-width:1000px;
+            border:1px solid #efefef;
+            padding: 30px;
+        }
+        .article-header{
+            height: 50px;
+            line-height: 50px;
+        }
+        .article-content{
+            position: relative;
+        }
+        .article-list{
+            padding: 0;
+            list-style: none;
+
+        }
+        .article-list li{
+            width: 100%;
+            line-height: 40px;
+            margin-bottom: 10px;
+            border: 1px solid #f5f5f5;
+            padding-left: 10px;
+        }
+        .edit-col{
+            width:100%;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .edit-col label{
+            width: 100%;
+            display: block;
+            line-height: 30px;
+        }
+        .edit-text{
+            width: 100%;
+            max-width: 100%;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            border:1px solid #efefef;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .align-center{
+            text-align: center;
+        }
+        .edit-col button{
+            padding: 8px 20px;
+            color: #ffffff;
+            background: #ff9800;
+            border:none;
+            outline: none;
+            font-size: 16px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .edit-col button:hover{
+            background: #ff8000;
+        }
+    </style>
+</head>
+<body>
+<div class="article-container">
+    <form action="{% url 'blog:edit_action' %}" method="POST">
+        <div class="edit-col">
+            <label for="">文章标题</label>
+            <input name="title" value="{{ article.title }}" type="text" class="edit-text">
+        </div>
+        <div class="edit-col">
+            <label for="">文章内容</label>
+            <textarea name="content" id="" class="edit-text">{{ article.content }}</textarea>
+        </div>
+        <input hidden name="id" value="{{ article.id|default:'0' }}" type="text" class="edit-text">
+        {% csrf_token %}
+        <div class="edit-col align-center"><button>提交</button></div>
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import Article
 
@@ -9,14 +10,14 @@ def index(request):
 
 def article_page(request, article_id):
     article = Article.objects.get(id=article_id)
-    return render(request, "article_page.html", {"article": article})
+    return render(request, "article-detail.html", {"article": article})
 
 
 def edit_page(request, article_id):
     if int(article_id) > 0:
         article = Article.objects.get(id=article_id)
-        return render(request, 'edit_page.html', {"article": article})
-    return render(request, 'edit_page.html')
+        return render(request, 'article-edit.html', {"article": article})
+    return render(request, 'article-edit.html')
 
 
 def edit_action(request):
@@ -32,4 +33,5 @@ def edit_action(request):
     article.title = title
     article.content = content
     article.save()
-    return render(request, 'article_page.html', {"article": article})
+    articles = Article.objects.all()
+    return render(request, 'index.html', {"articles": articles})
