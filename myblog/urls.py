@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # blog app根url
-    url(r'^blog/', include("blog.urls", namespace="blog")),
+    url(r'^blog/', include(("blog.urls", "blog"), namespace="blog")),
 ]
